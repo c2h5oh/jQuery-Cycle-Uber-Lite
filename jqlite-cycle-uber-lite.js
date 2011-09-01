@@ -2,6 +2,7 @@
  * jQLiteCycle - Lightweight jQuery cycle plugin
  * @version: 0.1 (2011/09/01)  
  * @author Maciej Lisiewski
+ * Some of the code was copied from or inspired by: jQuery Cycle Plugin by M. Alsup and jqFancyTransitions by Ivan Lazarevic
  
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -24,6 +25,12 @@
 			links[el.id] = new Array(); // array for image links
 			titles[el.id] = new Array(); // array for link/image titles			
 			imgInc[el.id] = 0;
+		}
+		
+		//append lazy loaded content, it's recommended to have at least 1 image loaded "normally" for purely aesthetic reasons 
+		lazyLoad = function (el){
+			if (opts.lazyLoad != false)
+			$(el).append(opts.lazyLoad);
 		}
 		
 		//fetch images, links, titles, set animation interval
@@ -96,6 +103,7 @@
 			});
 		}
 		
+		// trigger transition animation
 		$.transition = function(el,direction){
 
 			if(opts[el.id].pause == true) return;			
