@@ -2,7 +2,7 @@
  * jQLiteCycle - Lightweight jQuery cycle plugin
  * @version: 0.1 (2011/09/01)  
  * @author Maciej Lisiewski
- * Some of the code was copied from or inspired by: jQuery Cycle Plugin by M. Alsup and jqFancyTransitions by Ivan Lazarevic
+ * Some of the code was copied from or inspired by: jQuery Cycle Plugin by M. Alsup and jqFancyTransitions/coin slider by Ivan Lazarevic
  
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -43,19 +43,19 @@
 				$(item).hide();
 			
 				$('.jql-'+el.id).mouseover(function(){
-					opts[el.id].pause = true;
+					$('#jql-navigation-'+el.id).show();
 				});
 		
 				$('.jql-'+el.id).mouseout(function(){
-					opts[el.id].pause = false;
-				});	
+					$('#jql-navigation-'+el.id).hide();
+				});				
 			
-				$('#jql-title-'+el.id).mouseover(function(){
-					opts[el.id].pause = true;
+				$('.jql-'+el.id).mouseover(function(){
+					params[el.id].pause = true;
 				});
-		
-				$('#jql-title-'+el.id).mouseout(function(){
-					opts[el.id].pause = false;
+			
+				$('.jql-'+el.id).mouseout(function(){
+					params[el.id].pause = false;
 				});
 				
 				clearInterval(imgInt[el.id]);	
@@ -69,9 +69,13 @@
 		
 		// navigation
 		$.navigation = function(el){
+			
+			$(el).append("<div id='jql-navigation-"+el.id+"'></div>");
+			$('#jql-navigation-'+el.id).hide();
+			
 			// create prev and next 
-			$('#'+el.id).append("<a href='#' id='jql-prev-"+el.id+"' class='jql-prev'>"+opts.next+"</a>");
-			$('#'+el.id).append("<a href='#' id='jql-next-"+el.id+"' class='jql-next'>"+opts.prev+"</a>");
+			$('#ql-navigation-'+el.id).append("<a href='#' id='jql-prev-"+el.id+"' class='jql-prev'>"+opts.next+"</a>");
+			$('#ql-navigation-'+el.id).append("<a href='#' id='jql-next-"+el.id+"' class='jql-next'>"+opts.prev+"</a>");
 		
 			// bind prev and next actions
 			$('#jql-prev-'+el.id).css({
@@ -130,7 +134,7 @@
 	$.fn.jQLiteCycle.defaults = {		
 		delay: 5000, // delay between images in ms
 		transitionSpeed: 300, // image transition speed in ms		
-		navigation: false, // prev next and buttons
+		navigation: false, // prev next and buttons		
 		prev: 'prev', // previous button text
 		next: 'next', // next button text
 		links : false, // show images as links 		
