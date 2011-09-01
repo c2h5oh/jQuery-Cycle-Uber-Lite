@@ -113,9 +113,7 @@
 					
 			if (imgInc[el.id] == -1){
 				imgInc[el.id] = img[el.id].length-1;
-			}			
-		
-			inc[el.id] = 0;		
+			}				
 		};
 
 	}
