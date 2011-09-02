@@ -1,0 +1,20 @@
+This is an attempt to make the lowest footpring possible image cycle (rotator) plugin. 
+
+Functions planned:
++ single transition animation (fade)
++ simple next/prev navigation
++ stop on hover
++ multiple plugin instances on page support
++ lazy load (what's the point of shaving 2kb off jQuery plugin if you're going to load 500KB of jpegs even before the js is executed?)
+
+The target:
++ less than 2KB of minified code including CSS
++ less than 1KB of gzipped code
++ IE6+, FF2+, Opera 9+, Chrome 3+ support
++ Has to run perfectly smooth on ancient gear and even leave some processing power for other tasks - will be tested on P3 + 256 MB RAM laptop running Windows 2000 + IE6 
+
+Changelog:
+
+0.1 - 02/09/2011
++ initial plugin commits
++ most of the code ready, no transition code yet. 
