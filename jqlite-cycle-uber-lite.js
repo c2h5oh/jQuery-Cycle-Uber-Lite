@@ -1,6 +1,6 @@
 /**
  * jQLiteCycle - Lightweight jQuery cycle plugin
- * @version: 0.1 (2011/09/01)  
+ * @version: 1.0 (2011/09/02)  
  * @author Maciej Lisiewski
  * Some of the code was copied from or inspired by: jQuery Cycle Plugin by M. Alsup and jqFancyTransitions/coin slider by Ivan Lazarevic
  
@@ -79,18 +79,18 @@
 		$.navigation = function(el){
 			
 			// create prev and next
-			$(el).append("<div id='jql-nav-"+el.id+"'><a href='#' id='jql-prev-"+el.id+"' class='jql-prev'>"+opts[el.id].next+"</a><a href='#' id='jql-next-"+el.id+"' class='jql-next'>"+opts[el.id].prev+"</a></div>");
+			$(el).append("<div id='jql-nav-"+el.id+"'><a href='#' id='jql-prev-"+el.id+"' class='jql-prev'>"+opts[el.id].prev+"</a><a href='#' id='jql-next-"+el.id+"' class='jql-next'>"+opts[el.id].next+"</a></div>");
 			$('#jql-nav-'+el.id).hide();
 			var navH = parseInt(opts[el.id].height)/2 - 15;	
 		
 			// bind prev and next actions
 			$('#jql-prev-'+el.id).css({
-				'position' 	: 'absolute',				
+				'position' 	: 'relative',					
 				'float'		: 'left',
 				'z-index' 	: 1001,
 				'line-height': '30px',
 				'opacity'	: 0.7,
-				'margin-top'	: navH
+				'top'	: navH
 			}).click( function(e){
 				e.preventDefault();
 				$.transition(el,'prev',1);
@@ -99,12 +99,12 @@
 			});
 
 			$('#jql-next-'+el.id).css({
-				'position' 	: 'absolute',				
+				'position' 	: 'relative',						
 				'float'		: 'right',
 				'z-index' 	: 1001,
 				'line-height': '30px',
 				'opacity'	: 0.7,
-				'margin-top': navH
+				'top': navH
 			}).click( function(e){
 				e.preventDefault();
 				$.transition(el,'next',1);
