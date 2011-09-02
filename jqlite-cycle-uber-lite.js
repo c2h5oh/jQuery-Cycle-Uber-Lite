@@ -76,8 +76,8 @@
 			$('#jql-navigation-'+el.id).hide();
 			
 			// create prev and next 
-			$('#ql-navigation-'+el.id).append("<a href='#' id='jql-prev-"+el.id+"' class='jql-prev'>"+opts.next+"</a>");
-			$('#ql-navigation-'+el.id).append("<a href='#' id='jql-next-"+el.id+"' class='jql-next'>"+opts.prev+"</a>");
+			$('#jql-navigation-'+el.id).append("<a href='#' id='jql-prev-"+el.id+"' class='jql-prev'>"+opts.next+"</a>");
+			$('#jql-navigation-'+el.id).append("<a href='#' id='jql-next-"+el.id+"' class='jql-next'>"+opts.prev+"</a>");
 		
 			// bind prev and next actions
 			$('#jql-prev-'+el.id).css({
