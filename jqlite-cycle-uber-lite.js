@@ -31,7 +31,9 @@
 		lazyLoad = function (el){
 			if (opts.lazyLoad != false)
 			$(el).append(opts.lazyLoad);
-		}
+		}		
+		
+		$(el).wrap("<div class='jql' id='jql-"+el.id+"' />");	
 		
 		//fetch images, links, titles, set animation interval
 		fetchImages = function(el){

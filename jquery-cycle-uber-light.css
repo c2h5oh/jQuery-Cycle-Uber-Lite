@@ -1,0 +1,4 @@
+.jql { overflow: hidden; zoom: 1; position: relative; }
+.jql a{ text-decoration: none; outline: none; border: none; }
+.jql-prev, 
+.jql-next { background-color: #000000; color: #FFFFFF; padding: 0px 10px; }
