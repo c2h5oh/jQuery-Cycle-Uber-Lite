@@ -22,114 +22,101 @@
 			opts[el.id] = $.extend({}, $.fn.jQLiteCycle.defaults, options);			
 			img[el.id] = new Array(); // array for image links					
 			imgInc[el.id] = 0;
-			opts[el.id].width = $(el).width;
-			opts[el.id].height = $(el).height;
-		}
-		
-		//append lazy loaded content, it's recommended to have at least 1 image loaded "normally" for purely aesthetic reasons 
-		lazyLoad = function (el){
+			opts[el.id].width = $(el).width();
+			opts[el.id].height = $(el).height();	
+			
+			//append lazy loaded content, it's recommended to have at least 1 image loaded "normally" for purely aesthetic reasons
 			if (opts[el.id].lazyLoad != false)
-			$(el).append(opts[el.id].lazyLoad);
-		}		
-		
-		$(el).wrap("<div class='jql' id='jql-"+el.id+"' />");	
-		
-		//fetch images, links, titles, set animation interval
-		fetchImages = function(el){
+			{
+				$(el).append(opts[el.id].lazyLoad);
+			}
+			
+			$(el).addClass('jql-'+el.id);
+			
+			//fetch images, links, titles, set animation interval		
 			$.each($('#'+el.id+' img'), function(i,item){
-				img[el.id][i] = $(item);
-				$(img[el.id][i]).css({
+				if ($(item).parent().is('a')){
+					img[el.id][i] = $(item).parent();
+					$(img[el.id][i]).css({						
+						'display':'block',
+						'position':'absolute'
+					}).hide();
+				}
+				else
+				{
+					img[el.id][i] = $(item);
+					$(img[el.id][i]).css({						
+						'position':'absolute'
+					}).hide();
+				}				
+				
+				$(item).css({
 					'width':opts[el.id].width,
 					'height':opts[el.id].height
 				});
-				if ($(img[el.id][i]).parent().is('a')){
-					$(img[el.id][i]).parent().css({
-						'zIndex':500-i,
-						'display':'block',
-						'position':'absolute'
-					});
-				} 
-				else{
-					$(img[el.id][i]).css({
-						'zIndex':500-i,
-						'position':'absolute'						
-					});
-				}				
-				
-				$(item).hide();
-			});
+			});			
 			
 			// reset opacity, show 1st element
-			$(img[el.id][0]).css('opacity',1).show();				
+			$(img[el.id][0]).css({'opacity':1}).show();				
+			
+			$.navigation(el);
 			
 			$('.jql-'+el.id).mouseover(function(){
-				$('#jql-navigation-'+el.id).show();
-			});
-		
-			$('.jql-'+el.id).mouseout(function(){
-				$('#jql-navigation-'+el.id).hide();
-			});				
-			
-			$('.jql-'+el.id).mouseover(function(){
+				$('#jql-nav-'+el.id).show();
 				opts[el.id].pause = true;
 			});
-			
+		
 			$('.jql-'+el.id).mouseout(function(){
+				$('#jql-nav-'+el.id).hide();
 				opts[el.id].pause = false;
-			});
+			});			
 				
 			clearInterval(interval[el.id]);	
-			interval[el.id] = setInterval(function() { $.transition(el,'next')  }, opts[el.id].delay);			
-		}
-		
-		this.each (
-			function(){ init(this); }
-		);	
-		
+			interval[el.id] = setInterval(function() { $.transition(el,'next')  }, opts[el.id].delay);		
+		}		
+				
 		// navigation
 		$.navigation = function(el){
 			
-			$(el).append("<div id='jql-navigation-"+el.id+"'></div>");
-			$('#jql-navigation-'+el.id).hide();
-			
-			// create prev and next 
-			$('#jql-navigation-'+el.id).append("<a href='#' id='jql-prev-"+el.id+"' class='jql-prev'>"+opts[el.id].next+"</a>");
-			$('#jql-navigation-'+el.id).append("<a href='#' id='jql-next-"+el.id+"' class='jql-next'>"+opts[el.id].prev+"</a>");
+			// create prev and next
+			$(el).append("<div id='jql-nav-"+el.id+"'><a href='#' id='jql-prev-"+el.id+"' class='jql-prev'>"+opts[el.id].next+"</a><a href='#' id='jql-next-"+el.id+"' class='jql-next'>"+opts[el.id].prev+"</a></div>");
+			$('#jql-nav-'+el.id).hide();
+			var navH = parseInt(opts[el.id].height)/2 - 15;	
 		
 			// bind prev and next actions
 			$('#jql-prev-'+el.id).css({
-				'position' 	: 'absolute',
-				'top'		: opts[el.id].height/2 - 15,
-				'left'		: 0,
+				'position' 	: 'absolute',				
+				'float'		: 'left',
 				'z-index' 	: 1001,
 				'line-height': '30px',
-				'opacity'	: 0.7
+				'opacity'	: 0.7,
+				'margin-top'	: navH
 			}).click( function(e){
 				e.preventDefault();
-				$.transition(el,'prev');
-				clearInterval(imgInt[el.id]);
-				imgInt[el.id] = setInterval(function() { $.transition(el)  }, opts[el.id].delay);		
+				$.transition(el,'prev',1);
+				clearInterval(interval[el.id]);
+				interval[el.id] = setInterval(function() { $.transition(el)  }, opts[el.id].delay);		
 			});
 
 			$('#jql-next-'+el.id).css({
-				'position' 	: 'absolute',
-				'top'		: opts.height/2 - 15,
-				'right'		: 0,
+				'position' 	: 'absolute',				
+				'float'		: 'right',
 				'z-index' 	: 1001,
 				'line-height': '30px',
-				'opacity'	: 0.7
+				'opacity'	: 0.7,
+				'margin-top': navH
 			}).click( function(e){
 				e.preventDefault();
-				$.transition(el,'next');
-				clearInterval(imgInt[el.id]);
-				imgInt[el.id] = setInterval(function() { $.transition(el)  }, opts[el.id].delay);
+				$.transition(el,'next',1);
+				clearInterval(interval[el.id]);
+				interval[el.id] = setInterval(function() { $.transition(el)  }, opts[el.id].delay);
 			});
 		}
 		
 		// trigger transition animation
-		$.transition = function(el,direction){
+		$.transition = function(el,direction,force){
 
-			if(opts[el.id].pause == true) return;			
+			if(opts[el.id].pause == true && force === undefined) return;			
 		
 			var current = imgInc[el.id];
 		
@@ -144,20 +131,21 @@
 					
 			if (imgInc[el.id] == -1){
 				imgInc[el.id] = img[el.id].length-1;
-			}
-			
-			$(img[el.id]).not('eq:'+current).hide();
-			$(img[el.id][imgInc[el.id]]).css({opacity: 0, display: 'block'});
-			$(img[el.id][imgInc[el.id]]).animate({opacity: 1}, opts[el.id].transitionSpeed);			
-			$(img[el.id][current]).animate({opacity: 0}, opts[el.id].transitionSpeed).css({'display':'none'});
-		}
-			
+			}		
+		
+			$(img[el.id][imgInc[el.id]]).fadeIn(opts[el.id].transitionSpeed);
+			$(img[el.id][current]).fadeOut(opts[el.id].transitionSpeed);
+		}	
+		
+		this.each (
+			function(){ init(this); }
+		);			
 	}
 	
 	// default values
 	$.fn.jQLiteCycle.defaults = {		
 		delay: 5000, // delay between images in ms
-		transitionSpeed: 300, // image transition speed in ms		
+		transitionSpeed: 500, // image transition speed in ms		
 		navigation: false, // prev next and buttons		
 		prev: 'prev', // previous button text
 		next: 'next', // next button text		 		
