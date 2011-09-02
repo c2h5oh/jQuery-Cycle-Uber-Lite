@@ -10,7 +10,7 @@ Functions planned:
 The target:
 + less than 2KB of minified code including CSS - almost: missed by 5%
 + less than 1KB of gzipped code - done: 803b exactly
-+ IE6+, FF2+, Opera 9+, Chrome 3+ support - not tested yet
++ IE6+, FF2+, Opera 9+, Chrome 3+ support - partially done: works fine in IE7, IE8 and IE9, Opera 10+ (older not yet tested), Chrome (old versions not yet tested) and Firefox 4+ (older versions not yet tested). Minor styling issues in IE6, also in IE6 transition is not smooth enough, but reducing animation framerate should do the trick  
 + Has to run perfectly smooth on ancient gear and even leave some processing power for other tasks - will be tested on P3 + 256 MB RAM laptop running Windows 2000 + IE6 - not tested yet, most likely will require lowered animation framerate 
 
 TODO:
@@ -28,8 +28,7 @@ Changelog:
 + fixed navigation css
 + removed external css (70b is not worth extra http request)
 + fully functional
-- not yet cross browser tested or performance profiled
-
+- not yet fully cross browser compatible (minor, non-blocking issue with IE6)
 
 0.1 - 01/09/2011
 + initial plugin commits
