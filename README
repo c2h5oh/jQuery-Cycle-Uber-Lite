@@ -1,22 +1,71 @@
 This is an attempt to make the lowest footpring possible image cycle (rotator) plugin. 
 
-Functions planned:
+1. Functions planned:
 + single transition animation (done)
 + simple next/prev navigation (done)
 + stop on hover (done)
 + multiple plugin instances on page support (done)
 + lazy load (what's the point of shaving 2kb off jQuery plugin if you're going to load 500KB of jpegs even before the js is executed?) (done)
 
-The target:
+2. The target:
 + less than 2KB of minified code including CSS - almost: missed by 5%
 + less than 1KB of gzipped code - done: 803b exactly
 + IE6+, FF2+, Opera 9+, Chrome 3+ support - partially done: works fine in IE7, IE8 and IE9, Opera 10+ (older not yet tested), Chrome (old versions not yet tested) and Firefox 4+ (older versions not yet tested). Minor styling issues in IE6, also in IE6 transition is not smooth enough, but reducing animation framerate should do the trick  
 + Has to run perfectly smooth on ancient gear and even leave some processing power for other tasks - will be tested on P3 + 256 MB RAM laptop running Windows 2000 + IE6 - not tested yet, most likely will require lowered animation framerate 
 
-TODO:
+3. TODO:
 + cross browser testing
 + performance profiling
 + usage examples
+
+4.How to use:
+
+Basic example:
+HTML - put links with images as anchor or just images in a container:
+<div id="container_name">
+	<a href="/link1"><img src="img1.jpg" alt="1st image" /></a>
+	<a href="/link2"><img src="img2.jpg" alt="2nd image" /></a>	
+	...
+	<a href="/linkN"><img src="imgN.jpg" alt="Nth image" /></a>
+</div>
+
+or
+
+<div id="container_name">
+	<img src="img1.jpg" alt="1st image" />
+	<img src="img2.jpg" alt="2nd image" />	
+	...
+	<img src="imgN.jpg" alt="Nth image" />
+</div>
+
+Java Script:
+<script type="text/javascript">				
+	$(document).ready(function() {					
+		$('#container_name').jQLiteCycle();
+	});
+</script> 
+
+With lazy load (load images beyond 1st on document.ready):
+HTML as in basic example, but put only 1st link/image in container
+<div id="container_name">
+	<a href="/link1"><img src="img1.jpg" alt="1st image" /></a>	
+</div>
+
+Java Script:
+<script type="text/javascript">				
+	$(document).ready(function() {					
+		$('#container_name').jQLiteCycle({
+			lazyLoad:'<a href="/link2"><img src="img2.jpg" alt="2nd image" /></a>	
+			<a href="/link3"><img src="img3.jpg" alt="3rd image" /></a>
+			...
+			<a href="/linkN"><img src="imgN.jpg" alt="Nth image" /></a>'
+		});
+	});
+</script>
+
+
+
+
 
 Changelog:
 
