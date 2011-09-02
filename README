@@ -2,10 +2,10 @@ This is an attempt to make the lowest footpring possible image cycle (rotator) p
 
 Functions planned:
 + single transition animation (fade)
-+ simple next/prev navigation
-+ stop on hover
-+ multiple plugin instances on page support
-+ lazy load (what's the point of shaving 2kb off jQuery plugin if you're going to load 500KB of jpegs even before the js is executed?)
++ simple next/prev navigation (done)
++ stop on hover (done)
++ multiple plugin instances on page support (done)
++ lazy load (what's the point of shaving 2kb off jQuery plugin if you're going to load 500KB of jpegs even before the js is executed?) (done)
 
 The target:
 + less than 2KB of minified code including CSS
