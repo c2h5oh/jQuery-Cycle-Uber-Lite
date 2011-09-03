@@ -113,6 +113,7 @@
 
 			if(opts[el.id].pause == true && force === undefined) return;			
 		
+			opts[el.id].pause = true;
 			clearInterval(interval[el.id]);
 		
 			var current = imgInc[el.id];
@@ -132,6 +133,7 @@
 					
 			$(img[el.id][imgInc[el.id]]).fadeIn(opts[el.id].transitionSpeed);
 			$(img[el.id][current]).fadeOut(opts[el.id].transitionSpeed, function(){
+				opts[el.id].pause = false;
 				interval[el.id] = setInterval(function() { $.transition(el,'next')  }, opts[el.id].delay);
 			});			
 		}		
