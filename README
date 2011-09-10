@@ -1,4 +1,4 @@
-This is an attempt to make the lowest footpring possible image cycle (rotator) plugin. Quite successful one :P 
+This is an attempt to make the lowest footprint possible image cycle (rotator) plugin. Quite successful one :P 
 
 1. Simple, bare essentials image cycle plugin:
 - single transition animation
@@ -17,7 +17,7 @@ This is an attempt to make the lowest footpring possible image cycle (rotator) p
 - it's 2.07KB when minified
 - it's 820 Bytes when gzipped
 - it's a single js file (no images, css - single HTTP request)
-- it has support for lazy loading (you load 1st image to be cycled and remaining ones are loaded later, when document is ready and user is waiting for another slide - this can MASSIVELY speed up percived loading times)
+- it has support for lazy loading (you load 1st image to be cycled and remaining ones are loaded later, when document is ready and user is waiting for another slide - this can MASSIVELY speed up perceived loading times)
 - to reduce CPU load runs on minimum smooth animation frame rate (default for jQuery: 70FPS, default for plugin: 30FPS) - it's usable even on old P3 256MB RAM laptop running Windows 2000 + IE6
 
 3. TODO:
@@ -71,9 +71,7 @@ Java Script:
 
 
 
-
-
-Changelog:
+5. Changelog:
 
 1.5 - 10/09/2011
 + lowered default frame rate to minimum smooth one so reduce CPU load
