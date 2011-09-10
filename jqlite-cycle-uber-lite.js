@@ -1,6 +1,6 @@
 /**
  * jQLiteCycle - Lightweight jQuery cycle plugin
- * @version: 1.0 (2011/09/02)  
+ * @version: 1.5 (2011/09/10)  
  * @author Maciej Lisiewski
  * Some of the code was copied from or inspired by: jQuery Cycle Plugin by M. Alsup and jqFancyTransitions/coin slider by Ivan Lazarevic
  
@@ -19,6 +19,7 @@
 	
 		//initialize variables
 		init = function(el){
+			jQuery.fx.interval = 16;
 			opts[el.id] = $.extend({}, $.fn.jQLiteCycle.defaults, options);			
 			img[el.id] = new Array(); // array for image links					
 			imgInc[el.id] = 0;

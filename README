@@ -1,22 +1,28 @@
-This is an attempt to make the lowest footpring possible image cycle (rotator) plugin. 
+This is an attempt to make the lowest footpring possible image cycle (rotator) plugin. Quite successful one :P 
 
-1. Functions planned:
-+ single transition animation (done)
-+ simple next/prev navigation (done)
-+ stop on hover (done)
-+ multiple plugin instances on page support (done)
-+ lazy load (what's the point of shaving 2kb off jQuery plugin if you're going to load 500KB of jpegs even before the js is executed?) (done)
+1. Simple, bare essentials image cycle plugin:
+- single transition animation
+- simple next/prev navigation
+- stop on hover
+- multiple plugin instances on page support
 
-2. The target:
-+ less than 2KB of minified code including CSS - almost: missed by 5%
-+ less than 1KB of gzipped code - done: 803b exactly
-+ IE6+, FF2+, Opera 9+, Chrome 3+ support - partially done: works fine in IE7, IE8 and IE9, Opera 10+ (older not yet tested), Chrome (old versions not yet tested) and Firefox 4+ (older versions not yet tested). Minor styling issues in IE6, also in IE6 transition is not smooth enough, but reducing animation framerate should do the trick  
-+ Has to run perfectly smooth on ancient gear and even leave some processing power for other tasks - will be tested on P3 + 256 MB RAM laptop running Windows 2000 + IE6 - not tested yet, most likely will require lowered animation framerate 
+
+2. Cross browser compatible
+- Internet Explorer 6+ (tested 6,7,8 and 9)
+- Firefox 2+ (tested all major releases)
+- Opera 9.5 (tested major releases, might be compatible with older versions as well)
+- Chrome 3+ (tested most major releases)
+
+3. It's fast and tiny
+- it's 2.07KB when minified
+- it's 820 Bytes when gzipped
+- it's a single js file (no images, css - single HTTP request)
+- it has support for lazy loading (you load 1st image to be cycled and remaining ones are loaded later, when document is ready and user is waiting for another slide - this can MASSIVELY speed up percived loading times)
+- to reduce CPU load runs on minimum smooth animation frame rate (default for jQuery: 70FPS, default for plugin: 30FPS) - it's usable even on old P3 256MB RAM laptop running Windows 2000 + IE6
 
 3. TODO:
-+ cross browser testing
-+ performance profiling
-+ usage examples
++ usage example files
+
 
 4.How to use:
 
@@ -68,6 +74,11 @@ Java Script:
 
 
 Changelog:
+
+1.5 - 10/09/2011
++ lowered default frame rate to minimum smooth one so reduce CPU load
++ fixed IE6 compatibility
++ fixed animation blocking in latest versions of Chrome and Firefox (setInterval synch)
 
 1.0 - 02/09/2011
 + added transition animation
